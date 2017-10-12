@@ -84,7 +84,7 @@ public class LambdaQs extends JFrame{
     			text1.setVisible(false);
     			p2.setVisible(false);
     			ImageIcon icon = new ImageIcon("C:\\Users\\11503\\Desktop\\eee2\\dotGif.gif");
-    			//地址自己改
+
     			JLabel label = new JLabel(icon);
     			add(label);
     			break;

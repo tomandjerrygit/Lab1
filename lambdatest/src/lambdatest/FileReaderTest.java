@@ -184,6 +184,7 @@ public class FileReaderTest {
 		try
 		{
 			words=readtxt("F:\\workplace\\lambdatest\\src\\lambdatest\\mytxt.txt");
+			//地址自己改
 		}
 		catch (IOException ex)
 		{
@@ -198,7 +199,8 @@ public class FileReaderTest {
 	public void function2()
 	{
 		 GraphViz gViz=new GraphViz("C:\\Users\\11503\\Desktop\\eee2", "E:\\learn\\java\\huatu\\bin\\dot.exe");
-	     gViz.start_graph();
+	     //地址自己改
+		 gViz.start_graph();
 	     for (int i=0;i<nodenum;i++)
 	     {
 	    	 for (Edge itsedge=headlist.get(i).firstedge;itsedge!=null;itsedge=itsedge.next)
@@ -295,7 +297,7 @@ public class FileReaderTest {
 		mystr+=("after:"+generateNewText(sentence));		
 		return mystr;
 	}
-	public String calcShortestPath(String a,String b)//出错
+	public String calcShortestPath(String a,String b)//计算不可达有错
 	{
 		int anum=findindex(a);
 		String mystr="";
@@ -381,7 +383,7 @@ public class FileReaderTest {
 		}
 		return mystr;
 	}
-	public void function5()//出错
+	public void function5()//计算不可达有错
 	{
 		String a,b;
 		a=JOptionPane.showInputDialog("1:");
