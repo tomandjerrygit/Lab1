@@ -79,11 +79,12 @@ public class LambdaQs extends JFrame{
     			text1.setText(t.showgraph2());
     			break;
     		case 2:
-    			t.function2();
+    			t.function2();//好像有问题
     			text1.setText("");
     			text1.setVisible(false);
     			p2.setVisible(false);
     			ImageIcon icon = new ImageIcon("C:\\Users\\11503\\Desktop\\eee2\\dotGif.gif");
+    			//地址自己改
     			JLabel label = new JLabel(icon);
     			add(label);
     			break;
@@ -99,7 +100,7 @@ public class LambdaQs extends JFrame{
     			text1.setVisible(true);
     			text1.setText(t.function4());
     			break;
-    		case 5:
+    		case 5://不可达出错
     			b.addActionListener(new Searchaction(5));
     			text1.setText("");
     			p2.setVisible(true);

@@ -295,7 +295,7 @@ public class FileReaderTest {
 		mystr+=("after:"+generateNewText(sentence));		
 		return mystr;
 	}
-	public String calcShortestPath(String a,String b)
+	public String calcShortestPath(String a,String b)//³ö´í
 	{
 		int anum=findindex(a);
 		String mystr="";
@@ -367,7 +367,7 @@ public class FileReaderTest {
 		}
 		return mystr;
 	}
-	private String printpath(int anum,int bnum,ArrayList<Integer> parent)
+	private String printpath(int anum,int bnum,ArrayList<Integer> parent)//³ö´í
 	{
 		String mystr="";
 		if (anum==bnum)
@@ -381,7 +381,7 @@ public class FileReaderTest {
 		}
 		return mystr;
 	}
-	public void function5()
+	public void function5()//³ö´í
 	{
 		String a,b;
 		a=JOptionPane.showInputDialog("1:");
