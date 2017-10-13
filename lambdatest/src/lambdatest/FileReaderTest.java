@@ -465,6 +465,7 @@ public class FileReaderTest {
 		}
 		return mystr;
 	}
+	//main函数在另一个java文件
 	/*public static void main(String[] args)
 	{
 		FileReaderTest t=new FileReaderTest();
