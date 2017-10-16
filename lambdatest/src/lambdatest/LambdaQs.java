@@ -17,7 +17,7 @@ import java.awt.*;
     
 public class LambdaQs extends JFrame{ 
 	JPanel p,p1,p2;
-	FileReaderTest t=new FileReaderTest();
+	FileReaderTest t=new FileReaderTest();//
 	JTextArea text1 = new JTextArea();
 	JTextField f1 = new JTextField();
 	JTextField f2 = new JTextField();
