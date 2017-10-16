@@ -340,6 +340,7 @@ public class FileReaderTest {
 		int bnum=findindex(b);
 		if (bnum<nodenum)
 		{
+			mystr+=printpath(anum,bnum,parent);
 			if (d.get(bnum).weighsum==1000)
 			{
 				mystr+=("²»¿É´ï\n");
@@ -347,8 +348,8 @@ public class FileReaderTest {
 			else
 			{
 				mystr+=("    length is:"+d.get(bnum).weighsum+"\n");
+
 			}
-			mystr+=printpath(anum,bnum,parent);
 		}
 		else
 		{
