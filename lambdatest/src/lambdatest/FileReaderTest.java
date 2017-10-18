@@ -136,19 +136,19 @@ public class FileReaderTest {
  		mystr += "\n";
  		return mystr;
  	}
-	private void showDirectedGraph(final ArrayList<Node> headlist) {
-		for (Node head:headlist) {
-			//System.out.print(head.s + ":");
-			for (Edge theedge = head.firstedge;
-					theedge != null;
-					theedge = theedge.next) {
-				//System.out.print("->" + theedge.weight
-						//+ headlist.get(
-						//		theedge.number).s);
-			}
-			//System.out.println("");
-		}
-	}
+//	private void showDirectedGraph(final ArrayList<Node> headlist) {
+//		for (Node head:headlist) {
+//			//System.out.print(head.s + ":");
+//			for (Edge theedge = head.firstedge;
+//					theedge != null;
+//					theedge = theedge.next) {
+//				//System.out.print("->" + theedge.weight
+//						//+ headlist.get(
+//						//		theedge.number).s);
+//			}
+//			//System.out.println("");
+//		}
+//	}
 	public final String showgraph2() {
 		String a = "";
 		for (Node head:headlist) {
@@ -178,7 +178,7 @@ public class FileReaderTest {
 		Set<String> wordsset = new HashSet<String>();
 		wordsset.addAll(words);
 		buildgraph(wordsset, words);
-		showDirectedGraph(headlist);
+		//showDirectedGraph(headlist);
 	}
 	public final void function2() {
 		 GraphViz gViz = new GraphViz(
