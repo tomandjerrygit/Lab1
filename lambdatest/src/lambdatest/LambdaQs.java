@@ -1,19 +1,19 @@
 package lambdatest;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JTextField;
+
     
 public class LambdaQs extends JFrame{ 
 	JPanel p,p1,p2;
@@ -42,7 +42,7 @@ public class LambdaQs extends JFrame{
     		p1.add(p3);
     	}
     	
-    	JLabel l = new JLabel("input words£º");
+    	JLabel l = new JLabel("input wordsï¿½ï¿½");
     	b.addActionListener(act);
     	p2.add(l);
     	p2.add(f1);
@@ -147,7 +147,7 @@ public class LambdaQs extends JFrame{
     	}
     }
     public static void main(String[] args) {   
-    	LambdaQs mainView = new LambdaQs();  
+    	new LambdaQs();  
     }  
   
 }  
