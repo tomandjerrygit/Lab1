@@ -138,15 +138,15 @@ public class FileReaderTest {
  	}
 	private void showDirectedGraph(final ArrayList<Node> headlist) {
 		for (Node head:headlist) {
-			System.out.print(head.s + ":");
+			//System.out.print(head.s + ":");
 			for (Edge theedge = head.firstedge;
 					theedge != null;
 					theedge = theedge.next) {
-				System.out.print("->" + theedge.weight
-						+ headlist.get(
-								theedge.number).s);
+				//System.out.print("->" + theedge.weight
+						//+ headlist.get(
+						//		theedge.number).s);
 			}
-			System.out.println("");
+			//System.out.println("");
 		}
 	}
 	public final String showgraph2() {
@@ -174,7 +174,7 @@ public class FileReaderTest {
 		catch (IOException ex) {
 			ex.printStackTrace();
 		}
-		System.out.print(showsentence(words));
+		//System.out.print(showsentence(words));
 		Set<String> wordsset = new HashSet<String>();
 		wordsset.addAll(words);
 		buildgraph(wordsset, words);
@@ -231,7 +231,7 @@ public class FileReaderTest {
 		a = JOptionPane.showInputDialog("1:");
 		b = JOptionPane.showInputDialog("2:");
 		while (a.equals(" ") == false | b.equals(" ") == false) {
-			System.out.println(function3gui(a, b));
+			//System.out.println(function3gui(a, b));
 			a = JOptionPane.showInputDialog("1:");
 			b = JOptionPane.showInputDialog("2:");
 		}
@@ -310,8 +310,7 @@ public class FileReaderTest {
 			}
 			visit.set(pairindex, true);
 			for (Edge itsedge = headlist.get(pairindex).firstedge;
-					itsedge != null; itsedge
-					= itsedge.next) {
+					itsedge != null; itsedge = itsedge.next) {
 				int v = itsedge.number;
 				if (!visit.get(v) && (d.get(v).getweighsum()) 
 						>(d.get(pairindex).weighsum + itsedge.weight)) {
@@ -365,7 +364,7 @@ public class FileReaderTest {
 		a = JOptionPane.showInputDialog("1:");
 		b = JOptionPane.showInputDialog("2:");
 		while (!a.equals(" ")) {
-			System.out.print(calcShortestPath(a, b));
+			//System.out.print(calcShortestPath(a, b));
 			a = JOptionPane.showInputDialog("1:");
 			b = JOptionPane.showInputDialog("2:");
 		}
@@ -375,8 +374,8 @@ public class FileReaderTest {
 		a = nodenum;
 		b = (int) (Math.random() * a);
 		Node head = headlist.get(b);
-		System.out.print("\nThe random path is: ");
-		System.out.print(head.s);
+		//System.out.print("\nThe random path is: ");
+		//System.out.print(head.s);
 		String d;
 		d = JOptionPane.showInputDialog("print keep to keep:");
 		while (head.out > 0 && (d.equals("keep"))) {
@@ -387,8 +386,8 @@ public class FileReaderTest {
 			}
 			if (edgetemp.come == false) {
 				edgetemp.come = true;
-				System.out.print("->" 
-				+headlist.get(edgetemp.number).s);
+				//System.out.print("->" 
+				//+headlist.get(edgetemp.number).s);
 				head = headlist.get(edgetemp.number);
 			} else {
 				break;
@@ -404,7 +403,9 @@ public class FileReaderTest {
 		}
 	}
 	public final String randomWalk() {
-		int a, b, c;
+		int a;
+		int b;
+		int c;
 		String mystr = "";
 		a = nodenum;
 		b = (int) (Math.random() * a);
@@ -500,7 +501,7 @@ class  GraphViz {
         runOrder += "-o ";
         runOrder += runPath;
         runOrder += "\\" + resultGif + ".gif";
-        System.out.println(runOrder);
+        //System.out.println(runOrder);
     }
 
     public void writeGraphToFile(final String dotcode, final String filename) {
