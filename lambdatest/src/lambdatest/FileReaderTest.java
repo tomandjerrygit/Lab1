@@ -15,452 +15,421 @@ import javax.swing.JOptionPane;
 public class FileReaderTest {
 	private int nodenum;
 	private ArrayList<Node> headlist;
-	private class Edge
-	{
+	private class Edge {
 		private int number;
 		private int weight;
 		private Edge next;
 		private boolean come;
-		public Edge(int number) {
+		Edge(final int number) {
 			this.number = number;
 			weight = 1;
 			come = false;
 		}
-		public void setnext(Edge next)
-		{
+		public void setnext(final Edge next) {
 			this.next = next;
 		}
 	}
-	private class Node
-	{
+	private class Node {
 		private String s;
 		private int out;
 		private Edge firstedge;
-		public Node(String s) {
+		Node(final String s) {
 			this.s = s;
-			out = 0;	
+			out = 0;
 			firstedge = null;
 		}
-		public void setnode(Edge first)
-		{
+		public void setnode(final Edge first) {
 			this.firstedge = first;
 		}
-		public void addout()
-		{
+		public void addout() {
 			this.out++;
 		}
 	}
-	private class dijpair
-	{
+	private class Dijpair {
 		private int weighsum;
 		private int index;
-		public dijpair(int index)
-		{
-			weighsum = 1000;this.index=index;
+		Dijpair(final int index) {
+			weighsum = 1000; this.index = index;
 		}
-		public void setweighsum(int num)
-		{
+		public void setweighsum(final int num) {
 			this.weighsum = num;
 		}
-		public int getweighsum()
-		{
+		public int getweighsum() {
 			return weighsum;
 		}
-		public int getindex()
-		{
+		public int getindex() {
 			return index;
-		}	
+		}
 	}
-	public FileReaderTest()
-	{
+	public FileReaderTest() {
 		nodenum = 0;
-		headlist = new ArrayList<Node>();		
+		headlist = new ArrayList<Node>();
 	}
-	private ArrayList<String> readtxt(String address) throws IOException
-	{
+	private ArrayList<String> readtxt(
+			final String address) throws IOException {
 		ArrayList<String> words = new ArrayList<String>();
 		FileReader fr = new FileReader(address);
 		int hasread = 0;
 		String s = "";
-		while ((hasread=fr.read()) > 0)
-		{
-			if ((hasread <= 90 && hasread >= 65) || (hasread <= 122 && hasread >= 97))
-			{
-				s += (char)hasread;
+		while ((hasread = fr.read()) > 0) {
+			if ((hasread <= 90 && hasread >= 65) ||
+					(hasread <= 122 && hasread >= 97)){
+				s += (char) hasread;
 			}
-			else
-			{
-				if (s.equals("") == false)
-				{
+			else {
+				if (s.equals("") == false) {
 					words.add(s);
 					s = "";
 				}
 			}
 		}
-		if (s.equals("") == false)
-		{
+		if (s.equals("") == false) {
 			words.add(s);
 		}
 		fr.close();
 		return words;
 	}
-	private int findindex(String a)
-	{
+	private int findindex(final String a) {
 		int i;
-		for (i = 0; i<headlist.size() && ((headlist.get(i).s.equals(a)) == false); i++);
+		for (i = 0; i < headlist.size()
+				&&((headlist.get(i).s.equals(a)) == false);
+				i++) {
+		}
 		return i;
 	}
- 	private void buildgraph(Set<String> wordsset,ArrayList<String> wordsarray)
-	{
+ 	private void buildgraph(final Set<String> wordsset,
+ 			final ArrayList<String> wordsarray) {
 		nodenum = wordsset.size();
-		for (String word:wordsset)
-		{
+		for (String word:wordsset) {
 			Node head = new Node(word);
 			headlist.add(head);
 		}
-		int front,behind;
+		int front, behind;
 		String temp = wordsarray.get(0);
 		front = findindex(temp);
-		for (int i = 1;i < (wordsarray.size());i++,front = behind)
-		{
+		for (int i = 1; i < (wordsarray.size()); i++, front = behind) {
 			temp = wordsarray.get(i);
 			behind = findindex(temp);
 			int flag = 1;
-			for (Edge edgetemp = headlist.get(front).firstedge;edgetemp != null;edgetemp = edgetemp.next)
-			{
-				if (edgetemp.number == behind)
-				{
+			for (Edge edgetemp = headlist.get(front).firstedge;
+					edgetemp != null;
+					edgetemp = edgetemp.next) {
+				if (edgetemp.number == behind) {
 					edgetemp.weight++;
-					flag=0;
-					break;				
+					flag = 0;
+					break;
 				}
 			}
-			if (flag == 1)
-			{
-				Edge newedge=new Edge(behind);
+			if (flag == 1) {
+				Edge newedge = new Edge(behind);
 				newedge.setnext(headlist.get(front).firstedge);
 				headlist.get(front).setnode(newedge);
 				headlist.get(front).addout();
 			}
-		}		
+		}
 	}
- 	public String showsentence(ArrayList<String> words)
- 	{
+ 	public final String showsentence(final ArrayList<String> words) {
  		String mystr = "";
- 		for (String word:words)
- 		{
- 			mystr += word+" ";
+ 		for (String word:words) {
+ 			mystr += word + " ";
  		}
  		mystr += "\n";
  		return mystr;
  	}
-	private void showDirectedGraph(ArrayList<Node> headlist)
-	{
-		for (Node head:headlist)
-		{
-			System.out.print(head.s+":");
-			for (Edge theedge = head.firstedge;theedge != null;theedge = theedge.next)
-			{
-				System.out.print("->" + theedge.weight + headlist.get(theedge.number).s);
+	private void showDirectedGraph(final ArrayList<Node> headlist) {
+		for (Node head:headlist) {
+			System.out.print(head.s + ":");
+			for (Edge theedge = head.firstedge;
+					theedge != null;
+					theedge = theedge.next) {
+				System.out.print("->" + theedge.weight
+						+ headlist.get(
+								theedge.number).s);
 			}
 			System.out.println("");
 		}
 	}
-	public String showgraph2()
-	{
+	public final String showgraph2() {
 		String a = "";
-		for (Node head:headlist)
-		{
+		for (Node head:headlist) {
 			a = a + head.s + ":";
-			for (Edge theedge = head.firstedge; theedge != null; theedge = theedge.next)
-			{
-			    a = a+"->"+theedge.weight+headlist.get(theedge.number).s;
+			for (Edge theedge = head.firstedge;
+					theedge != null;
+					theedge = theedge.next) {
+				a = a + "->" + theedge.weight 
+						+ headlist.get(theedge.number).s;
 			}
-			a = a+"\n";
+			a = a + "\n";
 		}
 		return a;
 	}
-	public void function1()
-	{
-		ArrayList<String> words=new ArrayList<>();
-		try
-		{
-			words = readtxt("/Users/jiangzhenfei/Desktop/myfile.txt");
+	public final void function1() {
+		ArrayList<String> words = new ArrayList<>();
+		try {
+			words = readtxt
+					("/Users/"
+							+ "jiangzhenfei/"
+							+ "Desktop/myfile.txt");
 		}
-		catch (IOException ex)
-		{
+		catch (IOException ex) {
 			ex.printStackTrace();
 		}
 		System.out.print(showsentence(words));
 		Set<String> wordsset = new HashSet<String>();
 		wordsset.addAll(words);
-		buildgraph(wordsset,words);
+		buildgraph(wordsset, words);
 		showDirectedGraph(headlist);
 	}
-	public void function2()
-	{
-		 GraphViz gViz = new GraphViz("C:\\Users\\11503\\Desktop\\eee2", "/usr/local/bin/dot");
-	     gViz.start_graph();
-	     for (int i = 0; i < nodenum; i++)
-	     {
-	    	 for (Edge itsedge = headlist.get(i).firstedge;itsedge != null;itsedge = itsedge.next)
-	    	 {
-	    		 gViz.addln(headlist.get(i).s + "->" + headlist.get(itsedge.number).s);
+	public final void function2() {
+		 GraphViz gViz = new GraphViz(
+				 "C:\\Users\\11503\\Desktop\\eee2",
+						 "/usr/local/bin/dot");
+	     gViz.startGraph();
+	     for (int i = 0; i < nodenum; i++) {
+	    	 for (Edge itsedge = headlist.get(i).firstedge;
+	    			 itsedge != null; itsedge = itsedge.next) {
+	    		 gViz.addln(headlist.get(i).s 
+	    				 + "->" + headlist.get(itsedge.number).s);
 	    	 }
 	     }
-	     gViz.end_graph();
-	     try 
-	     {
+	     gViz.endGraph();
+	     try {
 	        gViz.run();
-         } 
-	     catch (Exception e) 
-	     {
+	     }
+	     catch (Exception e) {
 	        e.printStackTrace();
 	     }
 	}
-	private String queryBridgeWords(String word1,String word2)
-	{
+	private String queryBridgeWords(
+			final String word1, final String word2) {
 		String mystr = "";
 		int start = findindex(word1);
-		if (start == headlist.size())
-		{
+		if (start == headlist.size()) {
 			return mystr;
 		}
 		int middle;
-		for (Edge itsedge = headlist.get(start).firstedge;itsedge != null;itsedge = itsedge.next)
-		{
+		for (Edge itsedge = headlist.get(start).firstedge;
+				itsedge != null; itsedge = itsedge.next) {
 			middle = itsedge.number;
-			for (Edge middleedge = headlist.get(middle).firstedge;middleedge != null;middleedge = middleedge.next)
-			{
-				if (headlist.get(middleedge.number).s.equals(word2))
-				{
-					mystr = mystr+headlist.get(middle).s+" ";
+			for (Edge middleedge = headlist.get(middle).firstedge;
+					middleedge != null;middleedge =
+							middleedge.next) {
+				if (headlist.
+						get(middleedge.number).
+						s.equals(word2)) {
+					mystr = mystr +
+							headlist.get(middle).s
+							+ " ";
 				}
 			}
-		}		
+		}
 		return mystr;
 	}
-	public void function3()
-	{
-		String a,b;
+	public final void function3() {
+		String a, b;
 		//int size=headlist.size();
 		a = JOptionPane.showInputDialog("1:");
 		b = JOptionPane.showInputDialog("2:");
-		while (a.equals(" ") == false | b.equals(" ") == false)
-		{
-			System.out.println(function3gui(a,b));
+		while (a.equals(" ") == false | b.equals(" ") == false) {
+			System.out.println(function3gui(a, b));
 			a = JOptionPane.showInputDialog("1:");
 			b = JOptionPane.showInputDialog("2:");
 		}
 	}
-	public String function3gui(String a,String b)
-	{
+	public final String function3gui(final String a, final String b) {
 		int size = headlist.size();
 		int ain = findindex(a);
 		int bin = findindex(b);
-		if (ain == size && bin < size) return ("No \"" + a + "\" in the graph");
-		else if (ain < size && bin == size) return ("No \"" +b + "\" in the graph");
-		else if (ain == size && bin == size) return ("No \"" + a + "\" and \"" + b + "\" in the graph");
-		else
-		{
-			String answer = queryBridgeWords(a,b);
-			return ("The bridge word from \"" + a + "\" to \"" + b + "\" is:" + answer);
+		if (ain == size && bin < size) {
+			return ("No \"" + a + "\" in the graph");
+		} else if (ain < size && bin == size) {
+			return ("No \"" + b + "\" in the graph");
+		} else if (ain == size && bin == size) {
+			return ("No \"" + a + "\" and \""
+		+ b + "\" in the graph");
+		} else {
+			String answer = queryBridgeWords(a, b);
+			return ("The bridge word from \""
+			+ a + "\" to \"" + b + "\" is:" + answer);
 		}
 	}
-	private String generateNewText(String inputText)
-	{
+	private String generateNewText(final String inputText) {
 		String[] words = inputText.split(" ");
 		String mystr = words[0];
-		for (int i = 1;i < words.length; i++)
-		{
-			String middle=queryBridgeWords(words[i-1],words[i]);
-			if (!middle.isEmpty()) mystr += (" "+middle.split(" ")[0]);
-			mystr += (" "+words[i]);			
+		for (int i = 1; i < words.length; i++) {
+			String middle = queryBridgeWords(words[i-1],words[i]);
+			if (!middle.isEmpty()) {
+				mystr += (" " + middle.split(" ")[0]);
+			}
+			mystr += (" "+words[i]);
 		}
 		mystr += ("\n");
 		return mystr;
 	}
-	public String function4()
-	{
+	public final String function4() {
 		String mystr = "";
 		ArrayList<String> words = new ArrayList<>();
-		try
-		{
-			words = readtxt("/Users/jiangzhenfei/Desktop/myfile2.txt");
+		try {
+			words = readtxt(
+					"/Users/jiangzhenfei/Desktop/myfile2.txt");
 		}
-		catch (IOException ex)
-		{
+		catch (IOException ex) {
 			ex.printStackTrace();
 		}
 		String sentence = showsentence(words);
-		mystr += ("initial:"+sentence+"\n");
-		mystr += ("after:"+generateNewText(sentence));		
+		mystr += ("initial:" + sentence+ "\n");
+		mystr += ("after:" + generateNewText(sentence));
 		return mystr;
 	}
-	public String calcShortestPath(String a,String b)
-	{
-		int anum=findindex(a);
-		String mystr="";
+	public final String calcShortestPath(final String a, final String b) {
+		int anum = findindex(a);
+		String mystr = "";
 		ArrayList<Integer> parent = new ArrayList<>(nodenum);
 		ArrayList<Boolean> visit = new ArrayList<>(nodenum);
-		ArrayList<dijpair> d = new ArrayList<>(nodenum);
-		for (int i = 0;i < nodenum; i++) {
+		ArrayList<Dijpair> d = new ArrayList<>(nodenum);
+		for (int i = 0; i < nodenum; i++) {
 			visit.add(false);
 			parent.add(-1);
-			dijpair pair = new dijpair(i);
+			Dijpair pair = new Dijpair(i);
 			d.add(pair);
-		}	
+		}
 		d.get(anum).setweighsum(0);
-		PriorityQueue<dijpair> myqueue = new PriorityQueue<>((o1,o2)->
-		{
-			dijpair pair1=(dijpair)o1;
-			dijpair pair2=(dijpair)o2;
-			return pair1.weighsum<pair2.weighsum ? -1
-					:(pair1.weighsum>pair2.weighsum ? 1:0);
+		PriorityQueue<Dijpair> myqueue =
+				new PriorityQueue<>((o1, o2) ->{
+			Dijpair pair1 = (Dijpair) o1;
+			Dijpair pair2 = (Dijpair) o2;
+			return pair1.weighsum < pair2.weighsum ? -1
+					: (pair1.weighsum > pair2.weighsum ? 1:0);
 		});
 		myqueue.offer(d.get(anum));
-		while ( myqueue.isEmpty() == false )
-		{
-			dijpair pair = myqueue.poll();
+		while (myqueue.isEmpty() == false){
+			Dijpair pair = myqueue.poll();
 			int pairindex = pair.getindex();
-			if (visit.get(pairindex))
-			{
+			if (visit.get(pairindex)) {
 				continue;
 			}
 			visit.set(pairindex, true);
-			for (Edge itsedge = headlist.get(pairindex).firstedge;itsedge != null;itsedge = itsedge.next)
-			{
+			for (Edge itsedge = headlist.get(pairindex).firstedge;
+					itsedge != null; itsedge
+					= itsedge.next) {
 				int v = itsedge.number;
-				if (!visit.get(v)&& (d.get(v).getweighsum()) > (d.get(pairindex).weighsum+itsedge.weight))
-				{
-					d.get(v).setweighsum(d.get(pairindex).weighsum+itsedge.weight);
+				if (!visit.get(v) && (d.get(v).getweighsum()) 
+						>(d.get(pairindex).weighsum + itsedge.weight)) {
+					d.get(v).setweighsum(
+							d.get(pairindex).weighsum
+							+ itsedge.weight);
 					parent.set(v, pairindex);
 					myqueue.offer(d.get(v));
 				}
 			}
 		}
 		int bnum = findindex(b);
-		if (bnum < nodenum)
-		{
-			if (d.get(bnum).weighsum == 1000)
-			{
+		if (bnum < nodenum) {
+			if (d.get(bnum).weighsum == 1000){
 				mystr += ("不可达\n");
 			}
-			else
-			{
-				mystr += ("    length is:"+d.get(bnum).weighsum+"\n");
+			else{
+				mystr += ("    length is:"
+			+ d.get(bnum).weighsum + "\n");
 			}
-			mystr += printpath(anum,bnum,parent);
+			mystr += printpath(anum, bnum, parent);
 		}
-		else
-		{
-			for (int i = 0;i < nodenum; i++)
-			{
-				mystr += printpath(anum,i,parent);
-				if (d.get(i).weighsum == 1000)
-				{
+		else{
+			for (int i = 0; i < nodenum; i++) {
+				mystr += printpath(anum, i, parent);
+				if (d.get(i).weighsum == 1000) {
 					mystr += ("不可达\n");
 				}
-				else
-				{
-					mystr += ("    length is:"+d.get(i).weighsum+"\n");
-				}				
+				else{
+					mystr += ("    length is:"
+				+ d.get(i).weighsum + "\n");
+				}
 			}
 		}
 		return mystr;
 	}
-	private String printpath(int anum,int bnum,ArrayList<Integer> parent)
-	{
+	private String printpath(final int anum,
+			 final int bnum, final ArrayList<Integer> parent){
 		String mystr = "";
-		if (anum == bnum)
-		{
+		if (anum == bnum) {
 			mystr += (headlist.get(anum).s);
 		}
-		else
-		{
-			mystr += printpath(anum,parent.get(bnum),parent);
-			mystr += ("->"+headlist.get(bnum).s);
+		else {
+			mystr += printpath(anum, parent.get(bnum), parent);
+			mystr += ("->" + headlist.get(bnum).s);
 		}
 		return mystr;
 	}
-	public void function5()
-	{
-		String a,b;
+	public final void function5() {
+		String a, b;
 		a = JOptionPane.showInputDialog("1:");
 		b = JOptionPane.showInputDialog("2:");
-		while (!a.equals(" "))
-		{
-			System.out.print(calcShortestPath(a,b));
+		while (!a.equals(" ")) {
+			System.out.print(calcShortestPath(a, b));
 			a = JOptionPane.showInputDialog("1:");
 			b = JOptionPane.showInputDialog("2:");
-		}		
+		}
 	}
-	public void function6()
-	{
-		int a,b,c;
+	public final void function6() {
+		int a, b, c;
 		a = nodenum;
-		b = (int)(Math.random()*a);
-		Node head = headlist.get(b);		 
+		b = (int) (Math.random() * a);
+		Node head = headlist.get(b);
 		System.out.print("\nThe random path is: ");
 		System.out.print(head.s);
 		String d;
-		d = JOptionPane.showInputDialog("print keep to keep:");		
-		while(head.out>0 && (d.equals("keep")))
-		{
-			c = (int)(Math.random()*head.out);
+		d = JOptionPane.showInputDialog("print keep to keep:");
+		while (head.out > 0 && (d.equals("keep"))) {
+			c = (int) (Math.random() * head.out);
 			Edge edgetemp = head.firstedge;
-			for(int i = 0; i < c-1; i++)
-			{
+			for (int i = 0; i < c - 1; i++) {
 				edgetemp = edgetemp.next;
 			}
-			if(edgetemp.come == false)
-			{
+			if (edgetemp.come == false) {
 				edgetemp.come = true;
-				System.out.print("->" + headlist.get(edgetemp.number).s );
+				System.out.print("->" 
+				+headlist.get(edgetemp.number).s);
 				head = headlist.get(edgetemp.number);
+			} else {
+				break;
 			}
-			else
-		        break;
 			d = JOptionPane.showInputDialog("print keep to keep:");
 		}
-		for (int i = 0; i < a; i++)
-		{
-			for (Edge edgetemp = headlist.get(i).firstedge;edgetemp!=null;edgetemp=edgetemp.next)
-			{			 
-				edgetemp.come = false;				 
+		for (int i = 0; i < a; i++) {
+			for (Edge edgetemp = headlist.get(i).firstedge;
+					edgetemp != null;
+					edgetemp = edgetemp.next) {
+				edgetemp.come = false;
 			}
-		}				
+		}
 	}
-	public String randomWalk()
-	{
-		int a,b,c;
+	public final String randomWalk() {
+		int a, b, c;
 		String mystr = "";
 		a = nodenum;
-		b = (int)(Math.random()*a);
-		Node head = headlist.get(b);		 
-		mystr += ("\nThe random path is: "+head.s);
-		while(head.out>0)
-		{
-			c = (int)(Math.random()*head.out);
+		b = (int) (Math.random() * a);
+		Node head = headlist.get(b);
+		mystr += ("\nThe random path is: " + head.s);
+		while (head.out > 0){
+			c = (int) (Math.random() * head.out);
 			Edge edgetemp = head.firstedge;
-			for(int i = 0; i < c-1; i++)
-			{
+			for (int i = 0; i < c - 1; i++) {
 				edgetemp = edgetemp.next;
 			}
-			if(edgetemp.come == false)
-			{
+			if (edgetemp.come == false) {
 				edgetemp.come = true;
-				mystr+=("\n->" + headlist.get(edgetemp.number).s );
-				head=headlist.get(edgetemp.number);
+				mystr += ("\n->" +
+				headlist.get(edgetemp.number).s );
+				head = headlist.get(edgetemp.number);
+			} else {
+				break;
 			}
-			else
-		        break;
 		}
-		for (int i = 0; i < a; i++)
-		{
-			for (Edge edgetemp = headlist.get(i).firstedge;edgetemp!=null;edgetemp=edgetemp.next)
-			{			 
-				edgetemp.come = false;				 
+		for (int i = 0; i < a; i++) {
+			for (Edge edgetemp = headlist.get(i).firstedge;
+					 edgetemp != null;
+					edgetemp=edgetemp.next) {
+				edgetemp.come = false;
 			}
 		}
 		return mystr;
@@ -501,18 +470,18 @@ public class FileReaderTest {
 }
 
 
-class  GraphViz{
+class  GraphViz {
     private String runPath = "";
-    private String dotPath = ""; 
+    private String dotPath = "";
     private String runOrder = "";
     private String dotCodeFile = "dotcode.txt";
     private String resultGif = "dotGif";
     private StringBuilder graph = new StringBuilder();
 
-    Runtime runtime = Runtime.getRuntime();
+    private Runtime runtime = Runtime.getRuntime();
 
     public void run() {
-        File file=new File(runPath);
+        File file = new File(runPath);
         file.mkdirs();
         writeGraphToFile(graph.toString(), runPath);
         creatOrder();
@@ -523,53 +492,53 @@ class  GraphViz{
         }
     }
 
-    public void creatOrder(){
-        runOrder += dotPath+" ";
+    public void creatOrder() {
+        runOrder += dotPath + " ";
         runOrder += runPath;
-        runOrder += "\\"+dotCodeFile+" ";
+        runOrder += "\\" + dotCodeFile + " ";
         runOrder += "-T gif ";
         runOrder += "-o ";
         runOrder += runPath;
-        runOrder += "\\"+resultGif+".gif";
+        runOrder += "\\" + resultGif + ".gif";
         System.out.println(runOrder);
     }
 
-    public void writeGraphToFile(String dotcode, String filename) {
+    public void writeGraphToFile(final String dotcode, final String filename) {
         try {
-            File file = new File(filename+"\\"+dotCodeFile);
-            if(!file.exists()){
+            File file = new File(filename + "\\" + dotCodeFile);
+            if (!file.exists()) {
                 file.createNewFile();
             }
             FileOutputStream fos = new FileOutputStream(file);
             fos.write(dotcode.getBytes());
             fos.close();
-        } catch (java.io.IOException ioe) { 
+        } catch (java.io.IOException ioe) {
             ioe.printStackTrace();
         }
-     }  
+    }
 
-    public GraphViz(String runPath,String dotPath) {
+    GraphViz(final String runPath, final String dotPath) {
         this.runPath = runPath;
         this.dotPath = dotPath;
     }
 
-    public void add(String line) {
-        graph.append("\t"+line);
+    public void add(final String line) {
+        graph.append("\t" + line);
     }
 
-    public void addln(String line) {
-        graph.append("\t"+line + "\n");
+    public void addln(final String line) {
+        graph.append("\t" + line + "\n");
     }
 
     public void addln() {
         graph.append('\n');
     }
 
-    public void start_graph() {
-        graph.append("digraph G {\n") ;
+    public void startGraph() {
+        graph.append("digraph G {\n");
     }
 
-    public void end_graph() {
-        graph.append("}") ;
-    }   
-} 
+    public void endGraph() {
+        graph.append("}");
+    }
+}
