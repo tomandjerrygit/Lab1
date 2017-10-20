@@ -295,7 +295,7 @@ public class FileReaderTest {
 		mystr+=("after:"+generateNewText(sentence));		
 		return mystr;
 	}
-	public String calcShortestPath(String a,String b)
+	public String calcShortestpath(String a,String b)
 	{
 		int anum=findindex(a);
 		String mystr="";
@@ -388,7 +388,7 @@ public class FileReaderTest {
 		b=JOptionPane.showInputDialog("2:");
 		while (!a.equals(" "))
 		{
-			System.out.print(calcShortestPath(a,b));
+			System.out.print(calcShortestpath(a,b));
 			a=JOptionPane.showInputDialog("1:");
 			b=JOptionPane.showInputDialog("2:");
 		}		
@@ -501,7 +501,7 @@ public class FileReaderTest {
 
 class  GraphViz{
     private String runPath = "";
-    private String dotPath = ""; 
+    private String dotpath = ""; 
     private String runOrder="";
     private String dotCodeFile="dotcode.txt";
     private String resultGif="dotGif";
@@ -522,7 +522,7 @@ class  GraphViz{
     }
 
     public void creatOrder(){
-        runOrder+=dotPath+" ";
+        runOrder+=dotpath+" ";
         runOrder+=runPath;
         runOrder+="\\"+dotCodeFile+" ";
         runOrder+="-T gif ";
@@ -546,9 +546,9 @@ class  GraphViz{
         }
      }  
 
-    public GraphViz(String runPath,String dotPath) {
+    public GraphViz(String runPath,String dotpath) {
         this.runPath=runPath;
-        this.dotPath=dotPath;
+        this.dotpath=dotpath;
     }
 
     public void add(String line) {

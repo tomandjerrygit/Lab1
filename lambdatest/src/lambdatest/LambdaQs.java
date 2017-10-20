@@ -141,7 +141,7 @@ public class LambdaQs extends JFrame{
     		}
     		else if (i==5)
     		{
-    			String s3=t.calcShortestPath(s1, s2);
+    			String s3=t.calcShortestpath(s1, s2);
         		text1.setText(s3);
     		}
     	}
