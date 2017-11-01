@@ -167,9 +167,7 @@ public class FileReaderTest {
 		ArrayList<String> words = new ArrayList<>();
 		try {
 			words = readtxt
-					("/Users/"
-							+ "jiangzhenfei/"
-							+ "Desktop/myfile.txt");
+					("F:\\workplace\\lambdatest\\src\\lambdatest\\mytxt.txt");
 		}
 		catch (IOException ex) {
 			ex.printStackTrace();
@@ -183,7 +181,7 @@ public class FileReaderTest {
 	public final void function2() {
 		 GraphViz gViz = new GraphViz(
 				 "C:\\Users\\11503\\Desktop\\eee2",
-						 "/usr/local/bin/dot");
+						 "E:\\learn\\java\\huatu\\bin\\dot");
 	     gViz.startGraph();
 	     for (int i = 0; i < nodenum; i++) {
 	    	 for (Edge itsedge = headlist.get(i).firstedge;
@@ -271,7 +269,7 @@ public class FileReaderTest {
 		ArrayList<String> words = new ArrayList<>();
 		try {
 			words = readtxt(
-					"/Users/jiangzhenfei/Desktop/myfile2.txt");
+					"F:\\workplace\\lambdatest\\src\\lambdatest\\mytxt2.txt");
 		}
 		catch (IOException ex) {
 			ex.printStackTrace();
@@ -325,7 +323,7 @@ public class FileReaderTest {
 		int bnum = findindex(b);
 		if (bnum < nodenum) {
 			if (d.get(bnum).weighsum == 1000){
-				mystr += ("涓嶅彲杈綷n");
+				mystr += ("不可达");
 			}
 			else{
 				mystr += ("    length is:"
@@ -337,7 +335,7 @@ public class FileReaderTest {
 			for (int i = 0; i < nodenum; i++) {
 				mystr += printpath(anum, i, parent);
 				if (d.get(i).weighsum == 1000) {
-					mystr += ("涓嶅彲杈綷n");
+					mystr += ("不可达");
 				}
 				else{
 					mystr += ("    length is:"

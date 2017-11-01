@@ -41,7 +41,7 @@ public class LambdaQs extends JFrame{
     		p1.add(p3);
     	}
 
-    	JLabel l = new JLabel("input words��");
+    	JLabel l = new JLabel("input words:");
     	b.addActionListener(act);
     	p2.add(l);
     	p2.add(f1);
