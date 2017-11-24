@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class FileReaderTestTest {
+public class FileReaderTestTest1 {
   public FileReaderTest f=new FileReaderTest();
   @Before
   public void setUp() throws Exception {

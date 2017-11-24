@@ -40,7 +40,6 @@ public class LambdaQs extends JFrame{
     		p3.add(b);
     		p1.add(p3);
     	}
-
     	JLabel l = new JLabel("input words:");
     	b.addActionListener(act);
     	p2.add(l);
@@ -74,14 +73,14 @@ public class LambdaQs extends JFrame{
     			text1.setText(t.showgraph2());
     			break;
     		case 2:
-    			t.function2();
+    			/*t.function2();
     			text1.setText("");
     			text1.setVisible(false);
     			p2.setVisible(false);
     			ImageIcon icon
     			= new ImageIcon("C:\\Users\\11503\\Desktop\\eee2\\dotGif.gif");
     			JLabel label = new JLabel(icon);
-    			add(label);
+    			add(label);*/
     			break;
     		case 3:
     			text1.setText("");

@@ -19,7 +19,7 @@ public class FileReaderTest {
     private int number;
     private int weight;
     private Edge next;
-    private boolean come;
+    private boolean come; 
     Edge(final int number) {
       this.number = number;
       weight = 1;
@@ -29,7 +29,7 @@ public class FileReaderTest {
       this.next = next;
     }
   }
-  private class Node {
+  private class Node { 
     private String s;
     private int out;
     private Edge firstedge;
@@ -177,6 +177,7 @@ public class FileReaderTest {
     wordsset.addAll(words);
     buildgraph(wordsset, words);
     //showDirectedGraph(headlist);
+    int aaa=0;
   }
   public final void function2() {
      GraphViz gViz = new GraphViz(
@@ -198,7 +199,7 @@ public class FileReaderTest {
           e.printStackTrace();
        }
   }
-  private String queryBridgeWords(
+  public String queryBridgeWords(
       final String word1, final String word2) {
     String mystr = "";
     int start = findindex(word1);
@@ -286,6 +287,7 @@ public class FileReaderTest {
     {
       return mystr;
     }
+    int jlfka=9;
     ArrayList<Integer> parent = new ArrayList<>(nodenum);
     ArrayList<Boolean> visit = new ArrayList<>(nodenum);
     ArrayList<Dijpair> d = new ArrayList<>(nodenum);
