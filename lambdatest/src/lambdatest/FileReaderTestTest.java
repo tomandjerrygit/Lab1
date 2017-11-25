@@ -6,10 +6,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class FileReaderTestTest {
-  public FileReaderTest f=new FileReaderTest();
+  public DirectedGraph f=new DirectedGraph();
   @Before
   public void setUp() throws Exception {
-    f.function1();
+    GenerateGraphControl generategraphcontrol=new GenerateGraphControl();
+    String g=generategraphcontrol.function(f);
   }
  
   @Test
@@ -69,27 +70,27 @@ public class FileReaderTestTest {
   
   @Test
   public void test1() {
-    String result=f.queryBridgeWords("sin","cos");
+    String result=f.BridgeWords("sin","cos");
     assertEquals("",result);
   }
   @Test
   public void test2() {
-    String result=f.queryBridgeWords("word","hello");
+    String result=f.BridgeWords("word","hello");
     assertEquals("",result);
   }
   @Test
   public void test3() {
-    String result=f.queryBridgeWords("this","hello");
+    String result=f.BridgeWords("this","hello");
     assertEquals("",result);
   }
   @Test
   public void test4() {
-    String result=f.queryBridgeWords("time","one");
+    String result=f.BridgeWords("time","one");
     assertEquals("",result);
   }
   @Test
   public void test5() {
-    String result=f.queryBridgeWords("of","word");
+    String result=f.BridgeWords("of","word");
     int fjal=0;
     assertEquals("this ",result);
   }

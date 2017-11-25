@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Set;
-import java.io.File;
-import java.io.FileOutputStream;
-
 
 import javax.swing.JOptionPane;
 
-public class FileReaderTest {
+//import lambdatest.FileReaderTest.Dijpair;
+//import lambdatest.FileReaderTest.Edge;
+//import lambdatest.FileReaderTest.Node;
+
+public class DirectedGraph {
   private int nodenum;
   private ArrayList<Node> headlist;
   private class Edge {
@@ -61,11 +62,11 @@ public class FileReaderTest {
       return index;
     }
   }
-  public FileReaderTest() {
+  public DirectedGraph() {
     nodenum = 0;
     headlist = new ArrayList<Node>();
   }
-  private ArrayList<String> readtxt(
+  /*private ArrayList<String> readtxt(
       final String address) throws IOException {
     ArrayList<String> words = new ArrayList<String>();
     FileReader fr = new FileReader(address);
@@ -88,7 +89,7 @@ public class FileReaderTest {
     }
     fr.close();
     return words;
-  }
+  }*/
   private int findindex(final String a) {
     int i;
     for (i = 0; i < headlist.size()
@@ -97,7 +98,7 @@ public class FileReaderTest {
     }
     return i;
   }
-  private void buildgraph(final Set<String> wordsset,
+  public void buildgraph(final Set<String> wordsset,
       final ArrayList<String> wordsarray) {
     nodenum = wordsset.size();
     for (String word:wordsset) {
@@ -136,7 +137,7 @@ public class FileReaderTest {
     mystr += "\n";
     return mystr;
   }
-//  private void showDirectedGraph(final ArrayList<Node> headlist) {
+  /*private void showDirectedGraph(final ArrayList<Node> headlist) {
 //    for (Node head:headlist) {
 //      //System.out.print(head.s + ":");
 //      for (Edge theedge = head.firstedge;
@@ -148,7 +149,7 @@ public class FileReaderTest {
 //      }
 //      //System.out.println("");
 //    }
-//  }
+  }*/
   public final String showgraph2() {
     String a = "";
     for (Node head:headlist) {
@@ -163,7 +164,7 @@ public class FileReaderTest {
     }
     return a;
   }
-  public final void function1() {
+  /*public final void function1() {
     ArrayList<String> words = new ArrayList<>();
     try {
       words = readtxt
@@ -178,7 +179,7 @@ public class FileReaderTest {
     buildgraph(wordsset, words);
     //showDirectedGraph(headlist);
     int aaa=0;
-  }
+  }*/
   public final void function2() {
      GraphViz gViz = new GraphViz(
          "C:\\Users\\11503\\Desktop\\eee2",
@@ -199,7 +200,7 @@ public class FileReaderTest {
           e.printStackTrace();
        }
   }
-  public String queryBridgeWords(
+  public String BridgeWords(
       final String word1, final String word2) {
     String mystr = "";
     int start = findindex(word1);
@@ -224,7 +225,7 @@ public class FileReaderTest {
     }
     return mystr;
   }
-  public final void function3() {
+  /*public final void function3() {
     String a, b;
     //int size=headlist.size();
     a = JOptionPane.showInputDialog("1:");
@@ -234,8 +235,8 @@ public class FileReaderTest {
       a = JOptionPane.showInputDialog("1:");
       b = JOptionPane.showInputDialog("2:");
     }
-  }
-  public final String function3gui(final String a, final String b) {
+  }*/
+  public final String queryBridgeWords(final String a, final String b) {
     int size = headlist.size();
     int ain = findindex(a);
     int bin = findindex(b);
@@ -247,12 +248,12 @@ public class FileReaderTest {
       return ("No \"" + a + "\" and \""
     + b + "\" in the graph");
     } else {
-      String answer = queryBridgeWords(a, b);
+      String answer = BridgeWords(a, b);
       return ("The bridge word from \""
       + a + "\" to \"" + b + "\" is:" + answer);
     }
   }
-  private String generateNewText(final String inputText) {
+  public String generateNewText(final String inputText) {
     String[] words = inputText.split(" ");
     String mystr = words[0];
     for (int i = 1; i < words.length; i++) {
@@ -265,7 +266,7 @@ public class FileReaderTest {
     mystr += ("\n");
     return mystr;
   }
-  public final String function4() {
+  /*public final String function4() {
     String mystr = "";
     ArrayList<String> words = new ArrayList<>();
     try {
@@ -279,7 +280,7 @@ public class FileReaderTest {
     mystr += ("initial:" + sentence+ "\n");
     mystr += ("after:" + generateNewText(sentence));
     return mystr;
-  }
+  }*/
   public final String calcShortestPath(final String a, final String b) {
     int anum = findindex(a);
     String mystr = "";
@@ -287,7 +288,6 @@ public class FileReaderTest {
     {
       return mystr;
     }
-    int jlfka=9;
     ArrayList<Integer> parent = new ArrayList<>(nodenum);
     ArrayList<Boolean> visit = new ArrayList<>(nodenum);
     ArrayList<Dijpair> d = new ArrayList<>(nodenum);
@@ -366,7 +366,7 @@ public class FileReaderTest {
     }
     return mystr;
   }
-  public final void function5() {
+  /*public final void function5() {
     String a, b;
     a = JOptionPane.showInputDialog("1:");
     b = JOptionPane.showInputDialog("2:");
@@ -375,8 +375,8 @@ public class FileReaderTest {
       a = JOptionPane.showInputDialog("1:");
       b = JOptionPane.showInputDialog("2:");
     }
-  }
-  public final void function6() {
+  }*/
+  /*public final void function6() {
     int a, b, c;
     a = nodenum;
     b = (int) (Math.random() * a);
@@ -408,7 +408,7 @@ public class FileReaderTest {
         edgetemp.come = false;
       }
     }
-  }
+  }*/
   public final String randomWalk() {
     int a;
     int b;
@@ -442,111 +442,4 @@ public class FileReaderTest {
     }
     return mystr;
   }
-  /*public static void main(String[] args)
-  {
-    FileReaderTest t=new FileReaderTest();
-    String a;
-    a=JOptionPane.showInputDialog("choose function(1,2,3,4,5,6):");
-    while (!a.equals("0"))
-    {
-      switch  (a)
-      {
-      case  "1":
-        t.function1();
-        break;
-      case "2":
-        t.function2();
-        break;
-      case "3":
-        t.function3();
-        break;
-      case "4":
-        System.out.println(t.function4());
-        break;
-      case "5":
-        t.function5();
-        break;
-      case "6":
-        t.function6();
-        break;
-      default:
-        System.out.println("error");  
-      }
-      a=JOptionPane.showInputDialog("choose function(1,2,3,4,5,6):");
-    }   
-  }*/
-}
-
-
-class  GraphViz {
-    private String runPath = "";
-    private String dotPath = "";
-    private String runOrder = "";
-    private String dotCodeFile = "dotcode.txt";
-    private String resultGif = "dotGif";
-    private StringBuilder graph = new StringBuilder();
-
-    private Runtime runtime = Runtime.getRuntime();
-
-    public void run() {
-        File file = new File(runPath);
-        file.mkdirs();
-        writeGraphToFile(graph.toString(), runPath);
-        creatOrder();
-        try {
-            runtime.exec(runOrder);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void creatOrder() {
-        runOrder += dotPath + " ";
-        runOrder += runPath;
-        runOrder += "\\" + dotCodeFile + " ";
-        runOrder += "-T gif ";
-        runOrder += "-o ";
-        runOrder += runPath;
-        runOrder += "\\" + resultGif + ".gif";
-        //System.out.println(runOrder);
-    }
-
-    public void writeGraphToFile(final String dotcode, final String filename) {
-        try {
-            File file = new File(filename + "\\" + dotCodeFile);
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(dotcode.getBytes());
-            fos.close();
-        } catch (java.io.IOException ioe) {
-            ioe.printStackTrace();
-        }
-    }
-
-    GraphViz(final String runPath, final String dotPath) {
-        this.runPath = runPath;
-        this.dotPath = dotPath;
-    }
-
-    public void add(final String line) {
-        graph.append("\t" + line);
-    }
-
-    public void addln(final String line) {
-        graph.append("\t" + line + "\n");
-    }
-
-    public void addln() {
-        graph.append('\n');
-    }
-
-    public void startGraph() {
-        graph.append("digraph G {\n");
-    }
-
-    public void endGraph() {
-        graph.append("}");
-    }
 }

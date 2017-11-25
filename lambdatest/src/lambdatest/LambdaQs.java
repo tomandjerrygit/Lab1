@@ -17,7 +17,7 @@ import javax.swing.JTextField;
     
 public class LambdaQs extends JFrame{
 	JPanel p, p1, p2;
-	FileReaderTest t=new FileReaderTest();
+	DirectedGraph t=new DirectedGraph();
 	JTextArea text1 = new JTextArea();
 	JTextField f1 = new JTextField();
 	JTextField f2 = new JTextField();
@@ -66,11 +66,13 @@ public class LambdaQs extends JFrame{
     	public void actionPerformed(ActionEvent event) {
     		switch (functionnum) {
     		case 1:
-    			text1.setText("");
+    			/*text1.setText("");
     			p2.setVisible(false);
     			text1.setVisible(true);
     			t.function1();
-    			text1.setText(t.showgraph2());
+    			text1.setText(t.showgraph2());*/
+    		  GenerateGraphForm generategraphform=new GenerateGraphForm();
+    		  generategraphform.function(t, text1, p2);
     			break;
     		case 2:
     			/*t.function2();
@@ -79,8 +81,10 @@ public class LambdaQs extends JFrame{
     			p2.setVisible(false);
     			ImageIcon icon
     			= new ImageIcon("C:\\Users\\11503\\Desktop\\eee2\\dotGif.gif");
-    			JLabel label = new JLabel(icon);
-    			add(label);*/
+    			JLabel label = new JLabel(icon);*/
+    		  DrawGraphForm drawgraphform=new DrawGraphForm();
+    		  JLabel label = new JLabel(drawgraphform.function(t, text1, p2));
+    			add(label);
     			break;
     		case 3:
     			text1.setText("");
@@ -89,10 +93,12 @@ public class LambdaQs extends JFrame{
     			act.isetter(3);
     			break;
     		case 4:
-    			text1.setText("");
+    			/*text1.setText("");
     			p2.setVisible(false);
     			text1.setVisible(true);
-    			text1.setText(t.function4());
+    			text1.setText(t.function4());*/
+    		  GenerateNewTextForm generatenewtextform=new GenerateNewTextForm();
+    		  generatenewtextform.function(t, text1, p2);
     			break;
     		case 5:
     			b.addActionListener(new Searchaction(5));
@@ -102,10 +108,12 @@ public class LambdaQs extends JFrame{
     			act.isetter(5);
     			break;
     		case 6:
-    			text1.setText("");
+    			/*text1.setText("");
     			p2.setVisible(false);
     			text1.setVisible(true);
-    			text1.setText(t.randomWalk());
+    			text1.setText(t.randomWalk());*/
+    		  RandomWalkForm randomwalkform=new RandomWalkForm();
+    		  randomwalkform.function(t, text1, p2);
     			break;
     		default:
     			break;
@@ -121,17 +129,21 @@ public class LambdaQs extends JFrame{
     		i = iset;
     	}
     	public void actionPerformed(final ActionEvent event) {
-    		String s1 = f1.getText();
-    		String s2 = f2.getText();
+    		//String s1 = f1.getText();
+    		//String s2 = f2.getText();
     		//System.out.println(s1);
     		//System.out.println(s2);
     		if (i == 3) {
-    			String s3 = t.function3gui(s1, s2);
-        		text1.setText(s3);
+    		  BridgeWordForm bridgewordform=new BridgeWordForm();
+          bridgewordform.function(t, text1, p2, f1, f2);
+    			//String s3 = t.function3gui(s1, s2);
+        	//text1.setText(s3);
     		}
     		else if (i == 5) {
-    			String s3 = t.calcShortestPath(s1, s2);
-        		text1.setText(s3);
+    		  CalcShortestPathForm calcshortestpathform=new CalcShortestPathForm();
+    		  calcshortestpathform.function(t, text1, p2, f1, f2);
+    			/*String s3 = t.calcShortestPath(s1, s2);
+        		text1.setText(s3);*/
     		}
     	}
     }
